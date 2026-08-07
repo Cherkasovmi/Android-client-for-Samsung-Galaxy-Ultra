@@ -1,0 +1,161 @@
+# Managed by Open Science Desktop.
+# Excludes paths with no provenance value plus secrets that must never be
+# committed. Research outputs, data, notebooks, and code are intentionally kept;
+# files >= 100 MB are dropped by the snapshot size guard, not by this list.
+
+# --- Secrets / credentials (API keys live in the OS keychain, never in git) ---
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+.netrc
+credentials.json
+secrets.json
+service-account*.json
+.aws/
+.gcloud/
+
+# --- macOS ---
+.DS_Store
+.DS_Store?
+._*
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+
+# --- Windows ---
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# --- Linux ---
+.fuse_hidden*
+.Trash-*
+.nfs*
+
+# --- Editors / IDEs ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+.*.swp
+*~
+*.sublime-workspace
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+env/
+ENV/
+.eggs/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+.hypothesis/
+cython_debug/
+.ipynb_checkpoints/
+
+# --- Conda ---
+.conda/
+
+# --- R ---
+.Rhistory
+.RData
+.Rproj.user/
+.Ruserdata
+
+# --- Node / JS ---
+node_modules/
+.npm/
+.yarn/
+.pnpm-store/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Temp / caches ---
+*.tmp
+*.temp
+*.bak
+.cache/
+tmp/
+.tmp/
+
+# --- Bulk binary media (images / audio / video) ---
+# These arrive in the thousands (a copied image or audio dataset) and each file
+# is usually well under the 20 MB per-file size guard, so that guard can't stop
+# them — thousands of small binaries would bloat history fatally, and git can
+# neither delta nor compress them. They are also almost always either raw data
+# or a regenerable render, not source. Text/vector figures (.svg) and documents
+# (.pdf) are kept — they are small, versionable, and usually authored output.
+# Notebook plots are embedded in the versioned .ipynb already. Delete a line
+# below if that medium is your primary data and you want it in snapshots.
+# Video
+*.mp4
+*.m4v
+*.mov
+*.avi
+*.mkv
+*.webm
+*.wmv
+*.flv
+*.mpg
+*.mpeg
+*.ogv
+*.3gp
+# Images (raster)
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tif
+*.tiff
+*.webp
+*.heic
+*.heif
+*.ico
+*.psd
+*.raw
+*.cr2
+*.nef
+*.arw
+*.dng
+# Audio
+*.wav
+*.flac
+*.aac
+*.m4a
+*.mp3
+*.ogg
+*.oga
+*.wma
+*.aiff
+*.aif

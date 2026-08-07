@@ -1,0 +1,11 @@
+python : Traceback (most recent call last):
+��ப�:1 ����:1
++ python -c "import sys; sys.path.insert(0,'server'); import main" 2>&1 ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "<string>", line 1, in <module>
+    import sys; sys.path.insert(0,'server'); import main
+                                             ^^^^^^^^^^^
+ModuleNotFoundError: No module named 'main'

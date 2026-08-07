@@ -1,0 +1,7 @@
+��ப�:1 ����:92
++ ... ��⥬� �ᯮ�������� ��/server/cameras.json 2>/dev/null && python3 ...
++                                                                ~~
+���ᥬ� "&&" �� ���� �����⨬� ࠧ����⥫�� �����஢ � �⮩ ���ᨨ.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : InvalidEndOfLine
+ 

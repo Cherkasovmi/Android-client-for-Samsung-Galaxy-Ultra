@@ -1,0 +1,7 @@
+python : ERROR:    Error loading ASGI app. Could not import module "main".
+��ப�:1 ����:1
++ python -m uvicorn main:app --host 0.0.0.0 --port 8000 --app-dir serve ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ERROR:    Error... module "main".:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

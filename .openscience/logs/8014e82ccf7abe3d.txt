@@ -1,0 +1,7 @@
+python3 : Python 
+��ப�:1 ����:1
++ python3 -m py_compile "C:\Users\AVTOR\Desktop\���⥬� �ᯮ�������� � ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Python :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
