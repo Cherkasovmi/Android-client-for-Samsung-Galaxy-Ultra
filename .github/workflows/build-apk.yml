@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,10 +30,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get update -qq
+          sudo apt-get update -qq -o Acquire::Retries=3
           sudo apt-get install -y -qq git zip unzip openjdk-17-jdk \
-            autoconf libtool pkg-config zlib1g-dev libncurses5-dev \
-            libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+            autoconf libtool pkg-config zlib1g-dev libncurses-dev \
+            libffi-dev libssl-dev cmake build-essential
 
       - name: Install Buildozer
         run: |
