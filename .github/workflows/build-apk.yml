@@ -32,7 +32,7 @@ jobs:
         run: |
           sudo apt-get update -qq -o Acquire::Retries=3
           sudo apt-get install -y -qq git zip unzip openjdk-17-jdk \
-            autoconf libtool pkg-config zlib1g-dev libncurses-dev \
+            autoconf automake libtool libltdl-dev pkg-config zlib1g-dev libncurses-dev \
             libffi-dev libssl-dev cmake build-essential
 
       - name: Install Buildozer
