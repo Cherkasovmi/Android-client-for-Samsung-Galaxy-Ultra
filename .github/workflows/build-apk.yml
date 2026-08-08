@@ -43,8 +43,9 @@ jobs:
 
       - name: Pre-seed flaky p4a dependencies
         run: |
-          mkdir -p "$HOME/.buildozer/android/packages/freetype"
-          cd "$HOME/.buildozer/android/packages/freetype"
+          base="$GITHUB_WORKSPACE/.buildozer/android/platform/build-arm64-v8a/packages/freetype"
+          mkdir -p "$base"
+          cd "$base"
           curl -fsSL --retry 5 --retry-all-errors --max-time 300 -o "freetype-2.14.1.tar.gz" \
             "https://downloads.sourceforge.net/project/freetype/freetype2/2.14.1/freetype-2.14.1.tar.gz"
           touch ".mark-freetype-2.14.1.tar.gz"
