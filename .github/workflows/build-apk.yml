@@ -80,6 +80,7 @@ jobs:
           exit $rc
 
       - name: Save build artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
