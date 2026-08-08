@@ -9,8 +9,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reset to clean state
+        run: |
+          git reset --hard origin/main
+          git clean -fd
+
       - name: Show project structure
         run: |
           echo "=== Current directory ==="
@@ -19,14 +27,14 @@ jobs:
           ls -la
           echo "=== buildozer.spec ==="
           cat buildozer.spec
-      
+
       - name: Install dependencies
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq git zip unzip openjdk-17-jdk \
             autoconf libtool pkg-config zlib1g-dev libncurses5-dev \
             libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
-      
+
       - name: Install Buildozer
         run: |
           pip install --upgrade pip
