@@ -159,3 +159,13 @@ tmp/
 *.wma
 *.aiff
 *.aif
+
+# !!! Android client build exceptions !!!
+# Don't exclude files needed for APK build
+!client_android.py
+!buildozer.spec
+!requirements.txt
+!README.md
+!install.bat
+!build_wsl.sh
+!.github/workflows/build-apk.yml
