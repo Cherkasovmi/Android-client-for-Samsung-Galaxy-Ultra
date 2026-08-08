@@ -13,10 +13,12 @@ jobs:
       
       - name: Show project structure
         run: |
-          echo "=== buildozer.spec ==="
-          cat buildozer.spec 2>/dev/null || echo "NOT FOUND"
+          echo "=== Current directory ==="
+          pwd
           echo "=== Files in root ==="
-          ls -la | head -20
+          ls -la
+          echo "=== buildozer.spec ==="
+          cat buildozer.spec
       
       - name: Install dependencies
         run: |
@@ -28,32 +30,23 @@ jobs:
       - name: Install Buildozer
         run: |
           pip install --upgrade pip
-          pip install buildozer==1.5.0 cython==0.29.37
+          pip install buildozer cython
           buildozer --version
 
       - name: Build APK
-        env:
-          ANDROIDSDK_ROOT: ${{ github.workspace }}/.android/sdk
         run: |
-          echo "ANDROID_HOME=$ANDROIDSDK_ROOT"
-          echo "JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))"
-          buildozer -v android debug 2>&1 | tee build.log || exit_code=$?
-          if [ -z "$exit_code" ]; then exit_code=0; fi
-          echo "Build exit code: $exit_code"
+          buildozer -v android debug 2>&1 | tee build.log || echo "Build exit code: $?"
+          echo "=== Build log tail ==="
           tail -100 build.log
-      
-      - name: Save build logs
-        if: failure()
+          echo "=== APK files ==="
+          ls -la bin/*.apk 2>/dev/null || echo "No APK found"
+
+      - name: Save build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: build-failure-logs
+          name: build-artifacts
+          if-no-files-found: warn
           path: |
+            bin/*.apk
             build.log
             .buildozer/
-      
-      - name: Save APK
-        if: success()
-        uses: actions/upload-artifact@v4
-        with:
-          name: peoplerecognition-apk
-          path: bin/*.apk
