@@ -43,9 +43,10 @@ jobs:
 
       - name: Build APK
         run: |
-          buildozer -v android debug 2>&1 | tee build.log || echo "Build exit code: $?"
+          set -o pipefail
+          buildozer -v android debug 2>&1 | tee build.log
           echo "=== Build log tail ==="
-          tail -100 build.log
+          tail -200 build.log
           echo "=== APK files ==="
           ls -la bin/*.apk 2>/dev/null || echo "No APK found"
 
