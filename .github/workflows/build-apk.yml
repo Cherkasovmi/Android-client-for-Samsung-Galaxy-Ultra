@@ -44,11 +44,16 @@ jobs:
       - name: Build APK
         run: |
           set -o pipefail
+          set +e
           buildozer -v android debug 2>&1 | tee build.log
+          rc=${PIPESTATUS[0]}
           echo "=== Build log tail ==="
-          tail -200 build.log
+          tail -150 build.log
+          echo "=== Searching error context ==="
+          grep -n -i -E -B2 -A4 "error|exception|failed|command not found|fatal|Traceback" build.log | tail -120
           echo "=== APK files ==="
           ls -la bin/*.apk 2>/dev/null || echo "No APK found"
+          exit $rc
 
       - name: Save build artifacts
         uses: actions/upload-artifact@v4
