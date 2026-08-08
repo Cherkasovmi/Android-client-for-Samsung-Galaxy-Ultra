@@ -41,6 +41,30 @@ jobs:
           pip install buildozer cython
           buildozer --version
 
+      - name: Pre-seed flaky p4a dependencies
+        run: |
+          set -e
+          mkdir -p "$HOME/.buildozer/android/packages"
+          cd "$HOME/.buildozer/android/packages"
+          fetch() {
+            local name="$1"; shift
+            echo "Fetching $name ..."
+            for url in "$@"; do
+              if curl -fsSL --retry 5 --retry-all-errors --max-time 300 -o "$name" "$url"; then
+                echo "OK: $name <- $url"
+                return 0
+              fi
+              echo "failed: $url"
+            done
+            return 1
+          }
+          fetch "freetype-2.14.1.tar.gz" \
+            "https://downloads.sourceforge.net/project/freetype/freetype2/2.14.1/freetype-2.14.1.tar.gz" \
+            "https://github.com/freetype/freetype/archive/refs/tags/VER-2-14-1.tar.gz" \
+            "https://download-mirror.savannah.gnu.org/releases/freetype/freetype-2.14.1.tar.gz" \
+            "https://download.savannah.gnu.org/releases/freetype/freetype-2.14.1.tar.gz"
+          ls -la "$HOME/.buildozer/android/packages"
+
       - name: Build APK
         run: |
           set -o pipefail
